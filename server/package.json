@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon -e ts -x ts-node src/index.ts",
+    "start:nowatch": "ts-node src/index.ts",
+    "format": "prettier --write *.json src/*.ts src/**/*.ts"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.14.1",
+    "graphql": "^15.0.0",
+    "lowdb": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
+  }
+}
