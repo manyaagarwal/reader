@@ -9,19 +9,11 @@ interface Book {
   name?: string;
   numPages?: number;
   currentPageNum?: number;
-  lastReadAt?: Date;
+  lastReadAt?: string; // Lowdb stores dates as strings
 }
 
-/**
- * The book record exposed to our GraphQL clients.
- */
-type ExternalBook = Omit<Book, "lastReadAt"> & {
-  lastReadAt?: string;
-};
-
-type CreateBookInput = Omit<ExternalBook, "id">;
-type UpdateBookInput = Pick<ExternalBook, "id"> &
-  Partial<Omit<ExternalBook, "id">>;
+type CreateBookInput = Omit<Book, "id">;
+type UpdateBookInput = Pick<Book, "id"> & Partial<Omit<Book, "id">>;
 
 // Internal/external transformers
 
@@ -43,11 +35,10 @@ function fromGlobalIdOrThrow(globalId: string): string {
   return localId.id;
 }
 
-function transformToExternalBook(book: Book): ExternalBook {
+function transformToExternalBook(book: Book): Book {
   return {
     ...book,
     id: toGlobalId(BOOK_TYPE, book.id),
-    lastReadAt: book.lastReadAt?.toISOString(),
   };
 }
 
@@ -56,7 +47,9 @@ function transformCreateInputToInternalBook(
 ): Omit<Book, "id"> {
   return {
     ...input,
-    lastReadAt: input.lastReadAt ? new Date(input.lastReadAt) : undefined,
+    lastReadAt: input.lastReadAt
+      ? new Date(input.lastReadAt).toISOString()
+      : undefined,
   };
 }
 
@@ -64,7 +57,10 @@ function transformUpdateInputToInternalBook(input: UpdateBookInput): Book {
   return {
     ...input,
     id: fromGlobalIdOrThrow(input.id),
-    lastReadAt: input.lastReadAt ? new Date(input.lastReadAt) : undefined,
+    // Ensure dates are actually dates
+    lastReadAt: input.lastReadAt
+      ? new Date(input.lastReadAt).toISOString()
+      : undefined,
   };
 }
 
@@ -76,12 +72,12 @@ function transformUpdateInputToInternalBook(input: UpdateBookInput): Book {
  */
 const bookCollection = db.defaults({ books: [] }).get("books");
 
-export function getAllBooks(): ExternalBook[] {
+export function getAllBooks(): Book[] {
   const books: Book[] = bookCollection.value();
   return books.map((book) => transformToExternalBook(book));
 }
 
-export function createBook(input: CreateBookInput): ExternalBook {
+export function createBook(input: CreateBookInput): Book {
   // TODO: Fix typings
   const book: Book = (bookCollection as any)
     .insert(transformCreateInputToInternalBook(input))
@@ -89,7 +85,7 @@ export function createBook(input: CreateBookInput): ExternalBook {
   return transformToExternalBook(book);
 }
 
-export function updateBook(input: UpdateBookInput): ExternalBook | undefined {
+export function updateBook(input: UpdateBookInput): Book | undefined {
   const bookToBeSaved = transformUpdateInputToInternalBook(input);
   // TODO: Fix typings
   const book: Book | undefined = (bookCollection as any)
@@ -98,7 +94,7 @@ export function updateBook(input: UpdateBookInput): ExternalBook | undefined {
   return book ? transformToExternalBook(book) : undefined;
 }
 
-export function deleteBook(id: string): ExternalBook | undefined {
+export function deleteBook(id: string): Book | undefined {
   // TODO: Fix typings
   const book: Book | undefined = (bookCollection as any)
     .removeById(fromGlobalIdOrThrow(id))

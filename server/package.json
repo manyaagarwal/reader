@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon -e ts -x ts-node src/index.ts",
     "start:nowatch": "ts-node src/index.ts",
-    "format": "prettier --write *.json src/*.ts src/**/*.ts"
+    "format": "prettier --write src/*.ts src/**/*.ts"
   },
   "dependencies": {
     "apollo-server-express": "^2.14.1",
