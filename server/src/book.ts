@@ -1,4 +1,10 @@
-import { toGlobalId, fromGlobalId } from "graphql-relay";
+import {
+  toGlobalId,
+  fromGlobalId,
+  connectionFromArray,
+  ConnectionCursor,
+  Connection,
+} from "graphql-relay";
 import _ from "lodash";
 import db from "./db";
 
@@ -79,6 +85,15 @@ const bookCollection = db.defaults({ books: [] }).get("books");
 export function getAllBooks(): Book[] {
   const books: Book[] = bookCollection.value();
   return books.map((book) => transformToExternalBook(book));
+}
+
+export function getAllBooksPaginated(
+  before: ConnectionCursor,
+  after: ConnectionCursor,
+  first: number,
+  last: number
+): Connection<Book> {
+  return connectionFromArray(getAllBooks(), { before, after, first, last });
 }
 
 export function createBook(input: CreateBookInput): Book {
