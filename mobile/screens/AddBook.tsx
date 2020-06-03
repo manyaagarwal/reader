@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Overlay } from 'react-native-elements';
 import { View, Text } from "react-native";
 import { StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import AddBookForm from "./AddBookForm"
 
 export default function AddBook() {
 
@@ -18,9 +18,8 @@ export default function AddBook() {
           <Image source={{uri : 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png'}} 
                 onPress={toggleOverlay} style={styles.FloatingButtonStyle} />
         </TouchableOpacity>
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text>Hello from Overlay!</Text>
-        
+      <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style ={{}}>
+        <AddBookForm />
       </Overlay>
     </View>
   );
