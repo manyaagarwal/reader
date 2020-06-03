@@ -1,7 +1,12 @@
 import { gql, IResolvers } from "apollo-server-express";
-import { getAllBooks, createBook, updateBook, deleteBook } from "./book";
+import {
+  getAllBooks,
+  createBook,
+  updateBook,
+  deleteBook,
+  getAllBooksPaginated,
+} from "./book";
 
-// TODO: bookConnection: BookConnection
 export const typeDefs = gql`
   enum BookStatus {
     YET_TO_READ
@@ -19,8 +24,31 @@ export const typeDefs = gql`
     status: BookStatus
   }
 
+  type PageInfo {
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+    endCursor: String
+  }
+
+  type BookConnection {
+    pageInfo: PageInfo!
+    edges: [BookEdge!]!
+  }
+
+  type BookEdge {
+    node: Book!
+    cursor: String!
+  }
+
   type Query {
     books: [Book]
+    bookConnection(
+      before: String
+      after: String
+      first: Int
+      last: Int
+    ): BookConnection!
   }
 
   input CreateBookInput {
@@ -52,6 +80,8 @@ export const typeDefs = gql`
 export const resolvers: IResolvers = {
   Query: {
     books: () => getAllBooks(),
+    bookConnection: (_, { before, after, first, last }) =>
+      getAllBooksPaginated(before, after, first, last),
   },
 
   Mutation: {
