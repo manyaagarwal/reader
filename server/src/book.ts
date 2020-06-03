@@ -17,7 +17,7 @@ enum BookStatus {
 /**
  * A book record, as stored by the database.
  */
-interface Book {
+export interface Book {
   id: string;
   name?: string | null;
   numPages?: number | null;
