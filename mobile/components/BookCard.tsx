@@ -1,8 +1,12 @@
 import * as React from "react";
 import { Card, Paragraph } from "react-native-paper";
 
-// @ts-ignore
-export function BookCard({ key, book }) {
+interface Props {
+  key: string;
+  book: any;
+}
+
+export const BookCard: React.FC<Props> = ({ key, book }) => {
   return (
     <Card key={key}>
       <Card.Title title={book.name} />
