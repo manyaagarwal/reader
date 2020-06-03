@@ -1,4 +1,5 @@
 import { toGlobalId, fromGlobalId } from "graphql-relay";
+import _ from "lodash";
 import db from "./db";
 
 /**
@@ -6,10 +7,10 @@ import db from "./db";
  */
 interface Book {
   id: string;
-  name?: string;
-  numPages?: number;
-  currentPageNum?: number;
-  lastReadAt?: string; // Lowdb stores dates as strings
+  name?: string | null;
+  numPages?: number | null;
+  currentPageNum?: number | null;
+  lastReadAt?: string | null; // Lowdb stores dates as strings
 }
 
 type CreateBookInput = Omit<Book, "id">;
@@ -54,14 +55,17 @@ function transformCreateInputToInternalBook(
 }
 
 function transformUpdateInputToInternalBook(input: UpdateBookInput): Book {
-  return {
-    ...input,
+  const internalBook: Book = {
+    ..._.omitBy(input, _.isUndefined),
     id: fromGlobalIdOrThrow(input.id),
-    // Ensure dates are actually dates
-    lastReadAt: input.lastReadAt
-      ? new Date(input.lastReadAt).toISOString()
-      : undefined,
   };
+
+  // Ensure dates are actually dates
+  if (input.lastReadAt) {
+    internalBook.lastReadAt = new Date(input.lastReadAt).toISOString();
+  }
+
+  return internalBook;
 }
 
 // Book CRUD
