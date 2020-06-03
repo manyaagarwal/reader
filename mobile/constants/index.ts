@@ -7,8 +7,7 @@ export const appTheme = {
     primary: "#009fb7ff",
     accent: "#fed766ff",
     background: "#eff1f3ff",
-    text:"#272727ff",
-    disabled:"#696773ff",
+    text: "#272727ff",
+    disabled: "#696773ff",
   },
 };
-
