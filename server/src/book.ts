@@ -2,6 +2,12 @@ import { toGlobalId, fromGlobalId } from "graphql-relay";
 import _ from "lodash";
 import db from "./db";
 
+enum BookStatus {
+  YET_TO_READ = "YET_TO_READ",
+  READING = "READING",
+  COMPLETED = "COMPLETED",
+}
+
 /**
  * A book record, as stored by the database.
  */
@@ -11,6 +17,8 @@ interface Book {
   numPages?: number | null;
   currentPageNum?: number | null;
   lastReadAt?: string | null; // Lowdb stores dates as strings
+  numSecondsRead?: number | null;
+  status?: BookStatus | null;
 }
 
 type CreateBookInput = Omit<Book, "id">;

@@ -3,12 +3,20 @@ import { getAllBooks, createBook, updateBook, deleteBook } from "./book";
 
 // TODO: bookConnection: BookConnection
 export const typeDefs = gql`
+  enum BookStatus {
+    YET_TO_READ
+    READING
+    COMPLETED
+  }
+
   type Book {
     id: ID!
     name: String
     numPages: Int
     currentPageNum: Int
     lastReadAt: String
+    numSecondsRead: Int
+    status: BookStatus
   }
 
   type Query {
@@ -20,6 +28,8 @@ export const typeDefs = gql`
     numPages: Int
     currentPageNum: Int
     lastReadAt: String
+    numSecondsRead: Int
+    status: BookStatus
   }
 
   input UpdateBookInput {
@@ -28,6 +38,8 @@ export const typeDefs = gql`
     numPages: Int
     currentPageNum: Int
     lastReadAt: String
+    numSecondsRead: Int
+    status: BookStatus
   }
 
   type Mutation {
@@ -45,13 +57,49 @@ export const resolvers: IResolvers = {
   Mutation: {
     createBook: (
       _,
-      { input: { name, numPages, currentPageNum, lastReadAt } }
-    ) => createBook({ name, numPages, currentPageNum, lastReadAt }),
+      {
+        input: {
+          name,
+          numPages,
+          currentPageNum,
+          lastReadAt,
+          numSecondsRead,
+          status,
+        },
+      }
+    ) =>
+      createBook({
+        name,
+        numPages,
+        currentPageNum,
+        lastReadAt,
+        numSecondsRead,
+        status,
+      }),
 
     updateBook: (
       _,
-      { input: { id, name, numPages, currentPageNum, lastReadAt } }
-    ) => updateBook({ id, name, numPages, currentPageNum, lastReadAt }),
+      {
+        input: {
+          id,
+          name,
+          numPages,
+          currentPageNum,
+          lastReadAt,
+          numSecondsRead,
+          status,
+        },
+      }
+    ) =>
+      updateBook({
+        id,
+        name,
+        numPages,
+        currentPageNum,
+        lastReadAt,
+        numSecondsRead,
+        status,
+      }),
 
     deleteBook: (_, { id }) => deleteBook(id),
   },
