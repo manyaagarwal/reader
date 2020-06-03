@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "reader": {
+      "schemaPath": "../mobile/schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "default": "http://localhost:4000/graphql"
+        }
+      }
+    }
+  }
+}

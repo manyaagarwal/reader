@@ -1,0 +1,45 @@
+# source: http://localhost:4000/graphql
+# timestamp: Wed Jun 03 2020 05:10:03 GMT+0530 (India Standard Time)
+
+directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+type Book {
+  id: ID!
+  name: String
+  numPages: Int
+  currentPageNum: Int
+  lastReadAt: String
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+input CreateBookInput {
+  name: String
+  numPages: Int
+  currentPageNum: Int
+  lastReadAt: String
+}
+
+type Mutation {
+  createBook(input: CreateBookInput!): Book
+  updateBook(input: UpdateBookInput!): Book
+  deleteBook(id: ID!): Book
+}
+
+type Query {
+  books: [Book]
+}
+
+input UpdateBookInput {
+  id: ID!
+  name: String
+  numPages: Int
+  currentPageNum: Int
+  lastReadAt: String
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "apollo-server-express": "^2.14.1",
+    "global": "^4.4.0",
     "graphql": "^15.0.0",
+    "graphql-cli": "^3.0.14",
     "graphql-relay": "^0.6.0",
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0"
