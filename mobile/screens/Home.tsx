@@ -9,7 +9,6 @@ export function Home() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <AddBook />
-      <FloatingButton />
       <Text>Home Screen</Text>
     </View>
   );

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Overlay } from 'react-native-elements';
 import { View, Text } from "react-native";
+import { StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
 export default function AddBook() {
+
   const [visible, setVisible] = useState(false);
 
   const toggleOverlay = () => {
@@ -10,11 +13,36 @@ export default function AddBook() {
   };
 
   return (
-    <View>
-      <Button title="Open Overlay" onPress={toggleOverlay} />
+    <View style={styles.MainContainer}>
+        <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
+          <Image source={{uri : 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png'}} 
+                onPress={toggleOverlay} style={styles.FloatingButtonStyle} />
+        </TouchableOpacity>
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
         <Text>Hello from Overlay!</Text>
+        
       </Overlay>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+
+    MainContainer: {
+      position: 'absolute',
+      right: 30,
+      bottom: 30,
+      backgroundColor : '#F5F5F5'
+    },
+  
+    TouchableOpacityStyle:{
+      width: 50,
+      height: 50
+    },
+  
+    FloatingButtonStyle: {
+      resizeMode: 'contain',
+      width: 50,
+      height: 50,
+    }
+  });
