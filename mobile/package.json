@@ -6,6 +6,7 @@
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest",
+    "format": "prettier --write *.js *.tsx *.json constants/*.js",
     "relay": "relay-compiler --src ./src --schema ./schema.graphql --extensions js jsx tsx"
   },
   "dependencies": {
@@ -39,6 +40,7 @@
     "babel-preset-expo": "~8.1.0",
     "graphql": "^15.0.0",
     "jest-expo": "~37.0.0",
+    "prettier": "^2.0.5",
     "relay-compiler": "^9.1.0",
     "relay-config": "^9.1.0",
     "typescript": "~3.8.3"
