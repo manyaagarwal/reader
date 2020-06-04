@@ -17,7 +17,7 @@ export default function AddBook(props) {
         <Image
           source={{
             uri:
-              "https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png"
+              "https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png",
           }}
           style={styles.FloatingButtonStyle}
         />
@@ -38,23 +38,23 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 30,
     bottom: 30,
-    backgroundColor: "#F5F5F5"
+    backgroundColor: "#F5F5F5",
   },
 
   Portal: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
 
   TouchableOpacityStyle: {
     width: 50,
-    height: 50
+    height: 50,
   },
 
   FloatingButtonStyle: {
     resizeMode: "contain",
     width: 50,
-    height: 50
-  }
+    height: 50,
+  },
 });

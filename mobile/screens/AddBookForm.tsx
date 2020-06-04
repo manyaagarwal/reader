@@ -7,7 +7,7 @@ export default class AddBookForm extends Component<{}> {
   state = {
     bookName: "",
     total: "",
-    read: ""
+    read: "",
   };
 
   render() {
@@ -16,19 +16,21 @@ export default class AddBookForm extends Component<{}> {
         <TextInput
           label="Book Name"
           value={this.state.bookName}
-          onChangeText={text => this.setState({ bookName: text })}
+          onChangeText={(text) => this.setState({ bookName: text })}
         />
         <TextInput
           label="Total Number Of Pages"
           value={this.state.total}
-          onChangeText={text => this.setState({ total: text })}
+          onChangeText={(text) => this.setState({ total: text })}
         />
         <TextInput
           label="Number Of Pages Read"
           value={this.state.read}
-          onChangeText={text => this.setState({ read: text })}
+          onChangeText={(text) => this.setState({ read: text })}
         />
-        <Button mode="contained" onPress={() => console.log('Pressed')}>Add Book</Button>
+        <Button mode="contained" onPress={() => console.log("Pressed")}>
+          Add Book
+        </Button>
       </View>
     );
   }
@@ -37,7 +39,7 @@ export default class AddBookForm extends Component<{}> {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    justifyContent: 'center',
-    margin: 30
-  }
+    justifyContent: "center",
+    margin: 30,
+  },
 });
