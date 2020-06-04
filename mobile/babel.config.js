@@ -5,7 +5,7 @@ module.exports = function (api) {
     env: {
       production: {
         plugins: [
-          ["relay", { schema: "data/schema.json" }],
+          ["relay", { artifactDirectory: "./src/__generated__" }],
           "react-native-paper/babel",
         ],
       },
