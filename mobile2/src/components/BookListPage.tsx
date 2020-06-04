@@ -3,7 +3,7 @@ import { QueryRenderer, graphql } from "react-relay";
 import environment from "../Environment";
 import { Paragraph, ProgressBar, Colors } from "react-native-paper";
 import BookList from "./BookList";
-import { BookListPageQuery } from "../__generated__/BookListPageQuery.graphql";
+import { BookListPageQuery } from "./__generated__/BookListPageQuery.graphql";
 
 export const BookListPage: React.FC = () => {
   return (
@@ -21,7 +21,13 @@ export const BookListPage: React.FC = () => {
         } else if (props) {
           return <BookList books={props} />;
         }
-        return <ProgressBar progress={0.5} color={Colors.red800} />;
+        return (
+          <ProgressBar
+            progress={0.5}
+            color={Colors.red800}
+            accessibilityStates={[]}
+          />
+        );
       }}
     />
   );
