@@ -5,21 +5,25 @@ import { Paragraph, ProgressBar, Colors } from "react-native-paper";
 import BookList from "./BookList";
 import { BookListPageQuery } from "./__generated__/BookListPageQuery.graphql";
 
-export const BookListPage: React.FC = () => {
+interface props {
+  status: String;
+}
+
+export const BookListPage: React.FC<props> = ({ status }) => {
   return (
     <QueryRenderer<BookListPageQuery>
       environment={environment}
       query={graphql`
-        query BookListPageQuery {
+        query BookListPageQuery($status: String!) {
           ...BookList_books
         }
       `}
-      variables={{}}
+      variables={{ status: status }}
       render={({ error, props }) => {
         if (error) {
           return <Paragraph>{error.message}</Paragraph>;
         } else if (props) {
-          return <BookList books={props} />;
+          return <BookList books={props} status={status} />;
         }
         return (
           <ProgressBar

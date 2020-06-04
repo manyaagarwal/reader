@@ -6,6 +6,7 @@ import { BookList_books } from "./__generated__/BookList_books.graphql";
 
 type Props = {
   books: BookList_books;
+  status: String;
 };
 
 const BookList: React.FC<Props> = ({ books }) => {
