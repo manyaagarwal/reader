@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 import { TextInput, Button } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
+import { styles } from "../constants";
 
 export default class AddBookForm extends Component<{}> {
   state = {
@@ -42,11 +43,3 @@ export default class AddBookForm extends Component<{}> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  MainContainer: {
-    flex: 1,
-    justifyContent: "center",
-    margin: 30,
-  },
-});
