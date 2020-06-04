@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { TextInput, Button } from "react-native-paper";
 import { View } from "react-native";
-import {styles} from "../constants";
+import { styles } from "../constants";
 
 export default class AddBookForm extends Component<{}> {
   state = {
@@ -43,5 +43,3 @@ export default class AddBookForm extends Component<{}> {
     );
   }
 }
-
-
