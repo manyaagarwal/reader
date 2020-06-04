@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import { View } from "react-native";
+import React, { useState, useCallback } from "react";
+import { View, GestureResponderEvent } from "react-native";
 import { StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import AddBookForm from "./AddBookForm";
 import { Portal, Modal } from "react-native-paper";
 
-export default function AddBook(props) {
+type Props = {
+  onPress: (event: GestureResponderEvent) => void;
+};
+
+const AddBook: React.FC<Props> = (props) => {
   const [visible, setVisible] = useState(false);
 
-  const toggleOverlay = () => {
+  const toggleOverlay = useCallback(() => {
     setVisible(!visible);
-  };
+  }, [setVisible, visible]);
 
   return (
     <View style={styles.MainContainer}>
@@ -31,7 +35,7 @@ export default function AddBook(props) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   MainContainer: {
@@ -58,3 +62,5 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
+
+export default AddBook;
