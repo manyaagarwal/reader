@@ -17,7 +17,7 @@ function BookList({books}) {
 }
 
 export default createFragmentContainer(BookList, graphql`
-  fragment BookList_books on Book {
+  fragment BookList_books on books {
     Book(last: 10, orderBy: lastReadAt) @connection(key: "BookList_allBooks", filters: []) {
       edges {
         node { 
