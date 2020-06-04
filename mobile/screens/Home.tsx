@@ -1,11 +1,20 @@
 import * as React from "react";
 import { View, Text } from "react-native";
-import {Button} from "react-native-paper";
+import { StackNavigationProp } from "@react-navigation/stack";
+import AddBook from "./AddBook";
+import { RootStackParamList } from "./NavigatorModal";
 
-export function Home() {
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
+
+export const Home: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button>Reading Mode</Button>
+      <AddBook onPress={() => navigation.navigate("AddBookForm")} />
+      <Text>Home Screen</Text>
     </View>
   );
-}
+};
