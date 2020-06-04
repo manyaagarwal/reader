@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View } from "react-native";
+import React, { useState, useCallback } from "react";
+import { View, GestureResponderEvent } from "react-native";
 import { StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import AddBookForm from "./AddBookForm";
 import { Portal, Modal } from "react-native-paper";
@@ -18,7 +18,7 @@ export default function AddBook(props) {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   MainContainer: {
@@ -45,3 +45,5 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
+
+export default AddBook;

@@ -3,7 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AddBookForm from "./AddBookForm";
 import { Home } from "./Home";
 
-const RootStack = createStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  AddBookForm: undefined;
+};
+
+const RootStack = createStackNavigator<RootStackParamList>();
 
 export function NavigatorModal() {
   return (
