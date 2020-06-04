@@ -1,10 +1,15 @@
 import * as React from "react";
 import {Card, Paragraph} from "react-native-paper";
+// @ts-ignore
+import {
+    createFragmentContainer,
+    graphql
+} from 'react-relay'
 
 // @ts-ignore
-export function BookCard({key,book}) {
+function BookCard({key,book}) {
     return (
-        <Card key={key}>
+        <Card>
             <Card.Title title={book.name} />
             <Card.Content>
                 <Paragraph>{book.currentPageNum} / {book.numPages}</Paragraph>
@@ -13,3 +18,11 @@ export function BookCard({key,book}) {
     );
 }
 
+export default createFragmentContainer(BookCard, graphql`
+  fragment BookCard_book on BookCard {
+    id
+    name
+    currentPageNum
+    numPages
+  }
+`)
