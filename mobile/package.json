@@ -7,7 +7,7 @@
     "start": "react-native start",
     "test": "jest",
     "format": "prettier --write *.js *.tsx *.json constants/*.ts screens/*.tsx",
-    "relay": "relay-compiler --src ./src --schema ./schema.graphql --extensions js jsx tsx"
+    "relay": "relay-compiler --src ./components --schema ./schema.graphql --extensions js jsx ts tsx"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.6",

@@ -1,5 +1,5 @@
 # source: http://localhost:4000/graphql
-# timestamp: Wed Jun 03 2020 05:10:03 GMT+0530 (India Standard Time)
+# timestamp: Thu Jun 04 2020 13:40:59 GMT+0530 (India Standard Time)
 
 directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
 
@@ -9,6 +9,24 @@ type Book {
   numPages: Int
   currentPageNum: Int
   lastReadAt: String
+  numSecondsRead: Int
+  status: BookStatus
+}
+
+type BookConnection {
+  pageInfo: PageInfo!
+  edges: [BookEdge!]!
+}
+
+type BookEdge {
+  node: Book!
+  cursor: String!
+}
+
+enum BookStatus {
+  YET_TO_READ
+  READING
+  COMPLETED
 }
 
 enum CacheControlScope {
@@ -21,6 +39,8 @@ input CreateBookInput {
   numPages: Int
   currentPageNum: Int
   lastReadAt: String
+  numSecondsRead: Int
+  status: BookStatus
 }
 
 type Mutation {
@@ -29,8 +49,16 @@ type Mutation {
   deleteBook(id: ID!): Book
 }
 
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
 type Query {
   books: [Book]
+  bookConnection(before: String, after: String, first: Int, last: Int): BookConnection!
 }
 
 input UpdateBookInput {
@@ -39,6 +67,8 @@ input UpdateBookInput {
   numPages: Int
   currentPageNum: Int
   lastReadAt: String
+  numSecondsRead: Int
+  status: BookStatus
 }
 
 """The `Upload` scalar type represents a file upload."""
