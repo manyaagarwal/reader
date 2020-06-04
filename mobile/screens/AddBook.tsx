@@ -5,12 +5,6 @@ import AddBookForm from "./AddBookForm";
 import { Portal, Modal } from "react-native-paper";
 
 export default function AddBook(props) {
-  const [visible, setVisible] = useState(false);
-
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
-
   return (
     <View style={styles.MainContainer}>
       <TouchableOpacity activeOpacity={0.5} onPress={props.onPress}>
@@ -22,13 +16,6 @@ export default function AddBook(props) {
           style={styles.FloatingButtonStyle}
         />
       </TouchableOpacity>
-      <View style={styles.Portal}>
-        <Portal>
-          <Modal visible={visible} onDismiss={toggleOverlay}>
-            <AddBookForm />
-          </Modal>
-        </Portal>
-      </View>
     </View>
   );
 }
