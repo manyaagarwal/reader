@@ -18,7 +18,7 @@ export default function AddBook(props) {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   MainContainer: {
