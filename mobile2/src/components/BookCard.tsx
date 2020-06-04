@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Card, Paragraph } from "react-native-paper";
 import { createFragmentContainer, graphql } from "react-relay";
-import { BookCard_book } from "../src/__generated__/BookCard_book.graphql";
+import { BookCard_book } from "../__generated__/BookCard_book.graphql";
 
 interface Props {
   key: string;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider as PaperProvider } from "react-native-paper";
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 import Navigation from "./Navigation";
 import { appTheme } from "./constants";
 

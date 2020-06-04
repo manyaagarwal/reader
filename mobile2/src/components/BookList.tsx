@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollView } from "react-native";
 import { createFragmentContainer, graphql } from "react-relay";
 import BookCard from "./BookCard";
-import { BookList_books } from "../src/__generated__/BookList_books.graphql";
+import { BookList_books } from "../__generated__/BookList_books.graphql";
 
 type Props = {
   books: BookList_books;

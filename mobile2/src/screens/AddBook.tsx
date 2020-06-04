@@ -1,8 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { View, GestureResponderEvent } from "react-native";
-import { StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
-import AddBookForm from "./AddBookForm";
-import { Portal, Modal } from "react-native-paper";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
 
 type Props = {
   onPress?: (event: GestureResponderEvent) => void;

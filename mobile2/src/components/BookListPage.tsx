@@ -3,7 +3,7 @@ import { QueryRenderer, graphql } from "react-relay";
 import environment from "../Environment";
 import { Paragraph, ProgressBar, Colors } from "react-native-paper";
 import BookList from "./BookList";
-import { BookListPageQuery } from "../src/__generated__/BookListPageQuery.graphql";
+import { BookListPageQuery } from "../__generated__/BookListPageQuery.graphql";
 
 export const BookListPage: React.FC = () => {
   return (
