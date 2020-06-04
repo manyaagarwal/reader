@@ -2,21 +2,27 @@ import * as React from "react";
 import { ScrollView } from "react-native";
 import { createFragmentContainer, graphql } from "react-relay";
 import BookCard from "./BookCard";
+import { BookList_books } from "../src/__generated__/BookList_books.graphql";
 
-function BookList({ books }) {
+type Props = {
+  books: BookList_books;
+};
+
+const BookList: React.FC<Props> = ({ books }) => {
   return (
     <ScrollView>
-      {books.allBooks.edges.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
+      {books.books?.map(
+        (book) => book && <BookCard key={book.id} book={book} />
+      ) ?? null}
     </ScrollView>
   );
-}
+};
 
 export default createFragmentContainer(BookList, {
   books: graphql`
     fragment BookList_books on Query {
       books {
+        id
         ...BookCard_book
       }
     }

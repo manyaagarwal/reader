@@ -1,23 +1,17 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
 
-'use strict';
+import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type BookListPageQueryVariables = {};
+export type BookListPageQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"BookList_books">;
+};
+export type BookListPageQuery = {
+    readonly response: BookListPageQueryResponse;
+    readonly variables: BookListPageQueryVariables;
+};
 
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type BookList_books$ref = any;
-export type BookListPageQueryVariables = {||};
-export type BookListPageQueryResponse = {|
-  +$fragmentRefs: BookList_books$ref
-|};
-export type BookListPageQuery = {|
-  variables: BookListPageQueryVariables,
-  response: BookListPageQueryResponse,
-|};
-*/
 
 
 /*
@@ -34,13 +28,13 @@ fragment BookCard_book on Book {
 
 fragment BookList_books on Query {
   books {
-    ...BookCard_book
     id
+    ...BookCard_book
   }
 }
 */
 
-const node/*: ConcreteRequest*/ = {
+const node: ConcreteRequest = {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
@@ -107,10 +101,8 @@ const node/*: ConcreteRequest*/ = {
     "metadata": {},
     "name": "BookListPageQuery",
     "operationKind": "query",
-    "text": "query BookListPageQuery {\n  ...BookList_books\n}\n\nfragment BookCard_book on Book {\n  id\n  name\n  currentPageNum\n  numPages\n}\n\nfragment BookList_books on Query {\n  books {\n    ...BookCard_book\n    id\n  }\n}\n"
+    "text": "query BookListPageQuery {\n  ...BookList_books\n}\n\nfragment BookCard_book on Book {\n  id\n  name\n  currentPageNum\n  numPages\n}\n\nfragment BookList_books on Query {\n  books {\n    id\n    ...BookCard_book\n  }\n}\n"
   }
 };
-// prettier-ignore
-(node/*: any*/).hash = '61b30ea468f7b72aea919f212275858b';
-
-module.exports = node;
+(node as any).hash = '61b30ea468f7b72aea919f212275858b';
+export default node;

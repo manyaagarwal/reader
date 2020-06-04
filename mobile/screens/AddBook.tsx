@@ -4,7 +4,11 @@ import { StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import AddBookForm from "./AddBookForm";
 import { Portal, Modal } from "react-native-paper";
 
-export default function AddBook(props) {
+type Props = {
+  onPress?: (event: GestureResponderEvent) => void;
+};
+
+const AddBook: React.FC<Props> = (props) => {
   return (
     <View style={styles.MainContainer}>
       <TouchableOpacity activeOpacity={0.5} onPress={props.onPress}>
@@ -18,7 +22,7 @@ export default function AddBook(props) {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   MainContainer: {

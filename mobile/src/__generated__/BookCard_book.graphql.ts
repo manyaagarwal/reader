@@ -1,33 +1,24 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type { ReaderFragment } from 'relay-runtime';
-import type { FragmentReference } from "relay-runtime";
-declare export opaque type BookCard_book$ref: FragmentReference;
-declare export opaque type BookCard_book$fragmentType: BookCard_book$ref;
-export type BookCard_book = {|
-  +id: string,
-  +name: ?string,
-  +currentPageNum: ?number,
-  +numPages: ?number,
-  +$refType: BookCard_book$ref,
-|};
+import { ReaderFragment } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type BookCard_book = {
+    readonly id: string;
+    readonly name: string | null;
+    readonly currentPageNum: number | null;
+    readonly numPages: number | null;
+    readonly " $refType": "BookCard_book";
+};
 export type BookCard_book$data = BookCard_book;
 export type BookCard_book$key = {
-  +$data?: BookCard_book$data,
-  +$fragmentRefs: BookCard_book$ref,
-  ...
+    readonly " $data"?: BookCard_book$data;
+    readonly " $fragmentRefs": FragmentRefs<"BookCard_book">;
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+
+const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -64,7 +55,5 @@ const node/*: ReaderFragment*/ = {
   ],
   "type": "Book"
 };
-// prettier-ignore
-(node/*: any*/).hash = 'abbdbe0846392cf95c4549beb0d05922';
-
-module.exports = node;
+(node as any).hash = 'abbdbe0846392cf95c4549beb0d05922';
+export default node;

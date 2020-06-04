@@ -1,13 +1,13 @@
 {
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
-    "start": "expo start",
+    "start": "react-native start",
     "test": "jest",
     "format": "prettier --write *.js *.tsx *.json constants/*.ts screens/*.tsx",
-    "relay": "relay-compiler --src ./components --schema ./schema.graphql --extensions js jsx ts tsx"
+    "relay": "relay-compiler --language typescript --src ./components --schema ./schema.graphql --extensions tsx --artifactDirectory ./src/__generated__"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
@@ -42,12 +42,14 @@
     "@types/react": "~16.9.23",
     "@types/react-native": "~0.61.23",
     "@types/react-relay": "^7.0.8",
+    "@types/relay-runtime": "^8.0.11",
     "babel-plugin-relay": "^9.1.0",
     "babel-preset-expo": "~8.1.0",
     "graphql": "^15.0.0",
     "jest-expo": "~37.0.0",
     "prettier": "^2.0.5",
     "relay-compiler": "^9.1.0",
+    "relay-compiler-language-typescript": "^12.0.3",
     "relay-config": "^9.1.0",
     "typescript": "~3.8.3"
   },
