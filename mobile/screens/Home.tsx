@@ -1,14 +1,13 @@
 import * as React from "react";
 import { View, Text } from "react-native";
-import Modal from 'modal-react-native-web';
-import FloatingButton from "./FloatingButton";
 import AddBook from "./AddBook";
+import { TextInput, Button } from "react-native-paper";
 
 
-export function Home() {
+export function Home({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <AddBook />
+      <AddBook onPress={() => navigation.navigate('AddBookForm')}/>
       <Text>Home Screen</Text>
     </View>
   );

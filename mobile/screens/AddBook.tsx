@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button, Overlay } from "react-native-elements";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 import AddBookForm from "./AddBookForm";
+import { Portal, Modal } from "react-native-paper";
 
-export default function AddBook() {
+export default function AddBook(props) {
   const [visible, setVisible] = useState(false);
 
   const toggleOverlay = () => {
@@ -13,19 +13,22 @@ export default function AddBook() {
 
   return (
     <View style={styles.MainContainer}>
-      <TouchableOpacity activeOpacity={0.5} onPress={toggleOverlay}>
+      <TouchableOpacity activeOpacity={0.5} onPress={props.onPress}>
         <Image
           source={{
             uri:
               "https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png"
           }}
-          onPress={toggleOverlay}
           style={styles.FloatingButtonStyle}
         />
       </TouchableOpacity>
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={{}}>
-        <AddBookForm />
-      </Overlay>
+      <View style={styles.Portal}>
+        <Portal>
+          <Modal visible={visible} onDismiss={toggleOverlay}>
+            <AddBookForm />
+          </Modal>
+        </Portal>
+      </View>
     </View>
   );
 }
@@ -36,6 +39,12 @@ const styles = StyleSheet.create({
     right: 30,
     bottom: 30,
     backgroundColor: "#F5F5F5"
+  },
+
+  Portal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   TouchableOpacityStyle: {

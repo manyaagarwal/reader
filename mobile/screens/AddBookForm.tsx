@@ -1,28 +1,34 @@
 import React, { Component } from "react";
 
-import { Input, Button } from "react-native-elements";
+import { TextInput, Button } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
 export default class AddBookForm extends Component<{}> {
+  state = {
+    bookName: "",
+    total: "",
+    read: ""
+  };
+
   render() {
     return (
       <View style={styles.MainContainer}>
-        <Input
-          placeholder="Book Name"
-          onChangeText={value => this.setState({ bookName: value })}
-          style={styles.Input}
+        <TextInput
+          label="Book Name"
+          value={this.state.bookName}
+          onChangeText={text => this.setState({ bookName: text })}
         />
-        <Input
-          placeholder="Total Number Of Pages"
-          onChangeText={value => this.setState({ total: value })}
-          style={styles.Input}
+        <TextInput
+          label="Total Number Of Pages"
+          value={this.state.total}
+          onChangeText={text => this.setState({ total: text })}
         />
-        <Input
-          placeholder="Number Of Pages Read"
-          onChangeText={value => this.setState({ read: value })}
-          style={styles.Input}
+        <TextInput
+          label="Number Of Pages Read"
+          value={this.state.read}
+          onChangeText={text => this.setState({ read: text })}
         />
-        <Button title="Add Book" />
+        <Button mode="contained" onPress={() => console.log('Pressed')}>Add Book</Button>
       </View>
     );
   }
@@ -30,10 +36,8 @@ export default class AddBookForm extends Component<{}> {
 
 const styles = StyleSheet.create({
   MainContainer: {
-    height: 300,
-    width: 300
-  },
-  Input: {
-    marginTop: 20
+    flex: 1,
+    justifyContent: 'center',
+    margin: 30
   }
 });
