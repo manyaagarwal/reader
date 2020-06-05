@@ -18,7 +18,7 @@ export function NavigatorModal() {
         name="Home"
         component={Home}
         options={({ navigation, route }) => ({
-          headerTitle: props => <AddBook navigation={navigation} />,
+          headerTitle: (props) => <AddBook navigation={navigation} />,
         })}
       />
       <RootStack.Screen
