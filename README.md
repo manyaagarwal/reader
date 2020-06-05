@@ -1,5 +1,7 @@
 # Reader
 
+![Pod Reactive Sea-Son](https://img.shields.io/badge/Pod-Reactive%20Sea--Son-blue?style=flat-square)
+
 An Android app that helps you focus on reading books.
 
 Written in React Native and Relay as part of the
