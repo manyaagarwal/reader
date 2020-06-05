@@ -6,11 +6,11 @@ import BookList from "./BookList";
 import { BookListPageQuery } from "./__generated__/BookListPageQuery.graphql";
 import { appTheme } from "../constants";
 
-interface props {
-  status: String;
+interface Props {
+  status: string;
 }
 
-export const BookListPage: React.FC<props> = ({ status }) => {
+export const BookListPage: React.FC<Props> = ({ status }) => {
   return (
     <QueryRenderer<BookListPageQuery>
       environment={environment}
