@@ -4,7 +4,7 @@ import { Button, Text } from "react-native-paper";
 import { styles } from "../constants";
 import { StackNavigationProp } from "@react-navigation/stack";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { differenceInSeconds, formatDuration } from "date-fns";
+import { differenceInSeconds, formatDuration, format } from "date-fns";
 import { RootStackParamList } from "./NavigatorModal";
 import { useInterval } from "../util/useInterval";
 import { intervalToDuration } from "date-fns/esm";
@@ -39,7 +39,7 @@ const ChoosingView: React.FC<ChoosingViewProps> = ({ onStartSelected }) => {
   return (
     <>
       <Button mode="contained" onPress={startReading} accessibilityStates={[]}>
-        Start reading until {endDate.toLocaleString()}
+        Start reading until {format(endDate, "Pp")}
       </Button>
 
       <Button onPress={showPicker} accessibilityStates={[]}>
