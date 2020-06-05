@@ -9,12 +9,12 @@ type Props = {
   status: string;
 };
 
-const BookList: React.FC<Props> = ({ books, navigation }) => {
+const BookList: React.FC<Props> = ({ books, navigation, status }) => {
   return (
     <ScrollView>
       {books.books?.map(
         (book) =>
-          book && <BookCard key={book.id} book={book} navigation={navigation} />
+          book && <BookCard key={book.id} book={book} navigation={navigation} status={status}/>
       ) ?? null}
     </ScrollView>
   );

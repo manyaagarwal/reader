@@ -29,9 +29,9 @@ export default class AddBookForm extends Component<Props> {
   };
 
   componentDidMount(): void {
-    const { id, book } = this.props.route.params;
+    const { id, book } = this.props.route.params ?? "";
     console.log(book);
-    if (id) {
+    if (id !== "" && !!id) {
       this.setState({
         bookName: book.name,
         total: book.numPages.toString(),
@@ -43,9 +43,9 @@ export default class AddBookForm extends Component<Props> {
 
   render() {
     const addData = () => {
-      const { id } = this.props.route.params;
       const { status, total, read, bookName } = this.state;
-      if (id) {
+      const { id } = this.props.route.params ?? "";
+      if (id !== "" && !!id) {
         UpdateBookMutation(
           id,
           bookName,
