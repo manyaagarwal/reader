@@ -3,11 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AddBookForm from "../components/AddBookForm";
 import { Home } from "./Home";
 import { AddBook } from "../components/AddBook";
-import BookCard from "../components/BookCard";
+import ReadingTimer from "./ReadingTimer";
 
 export type RootStackParamList = {
   Home: undefined;
   AddBookForm: undefined;
+  ReadingTimer: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -26,6 +27,11 @@ export function NavigatorModal() {
         name="AddBookForm"
         component={AddBookForm}
         options={{ title: "Add/Update Book" }}
+      />
+      <RootStack.Screen
+        name="ReadingTimer"
+        component={ReadingTimer}
+        options={{ title: "Read " }}
       />
     </RootStack.Navigator>
   );
