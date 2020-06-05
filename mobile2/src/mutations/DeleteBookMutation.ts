@@ -19,7 +19,12 @@ export default (id, callback) => {
   commitMutation(environment, {
     mutation,
     variables,
-    // 6
+
+    updater: (store) => {
+      const payload = store.getRootField('deleteBook');
+      const id = payload._dataID;
+      store.delete(id);
+    },
     onCompleted: () => {
       callback();
     },
