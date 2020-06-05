@@ -9,7 +9,7 @@ export function AddBook({ navigation }) {
       <Button
         icon="plus"
         mode="text"
-        onPress={() => navigation.navigate("AddBookForm", {id: "", book: {}})}
+        onPress={() => navigation.navigate("AddBookForm", { id: "", book: {} })}
       />
     </View>
   );
