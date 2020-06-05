@@ -29,7 +29,7 @@ export function NavigatorModal() {
       <RootStack.Screen
         name="ReadingTimer"
         component={ReadingTimer}
-        options={{ headerShown: false }}
+        options={{ title: "Read " }}
       />
     </RootStack.Navigator>
   );
