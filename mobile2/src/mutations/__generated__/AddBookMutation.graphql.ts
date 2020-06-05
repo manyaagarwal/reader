@@ -19,6 +19,7 @@ export type AddBookMutationResponse = {
         readonly name: string | null;
         readonly numPages: number | null;
         readonly currentPageNum: number | null;
+        readonly status: BookStatus | null;
     } | null;
 };
 export type AddBookMutation = {
@@ -36,6 +37,7 @@ mutation AddBookMutation(
     name
     numPages
     currentPageNum
+    status
     id
   }
 }
@@ -77,6 +79,13 @@ v4 = {
   "kind": "ScalarField",
   "name": "currentPageNum",
   "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "status",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -95,7 +104,8 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
-          (v4/*: any*/)
+          (v4/*: any*/),
+          (v5/*: any*/)
         ],
         "storageKey": null
       }
@@ -119,6 +129,7 @@ return {
           (v2/*: any*/),
           (v3/*: any*/),
           (v4/*: any*/),
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -136,9 +147,9 @@ return {
     "metadata": {},
     "name": "AddBookMutation",
     "operationKind": "mutation",
-    "text": "mutation AddBookMutation(\n  $input: CreateBookInput!\n) {\n  createBook(input: $input) {\n    name\n    numPages\n    currentPageNum\n    id\n  }\n}\n"
+    "text": "mutation AddBookMutation(\n  $input: CreateBookInput!\n) {\n  createBook(input: $input) {\n    name\n    numPages\n    currentPageNum\n    status\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'e3623f9e8e751acd169e9afe49d4a179';
+(node as any).hash = '883614b13880a02d361f329e9e4f1a93';
 export default node;

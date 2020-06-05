@@ -24,6 +24,7 @@ fragment BookCard_book on Book {
   name
   currentPageNum
   numPages
+  status
 }
 
 fragment BookList_books on Query {
@@ -90,6 +91,13 @@ const node: ConcreteRequest = {
             "kind": "ScalarField",
             "name": "numPages",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "status",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -101,7 +109,7 @@ const node: ConcreteRequest = {
     "metadata": {},
     "name": "BookListPageQuery",
     "operationKind": "query",
-    "text": "query BookListPageQuery {\n  ...BookList_books\n}\n\nfragment BookCard_book on Book {\n  id\n  name\n  currentPageNum\n  numPages\n}\n\nfragment BookList_books on Query {\n  books {\n    id\n    ...BookCard_book\n  }\n}\n"
+    "text": "query BookListPageQuery {\n  ...BookList_books\n}\n\nfragment BookCard_book on Book {\n  id\n  name\n  currentPageNum\n  numPages\n  status\n}\n\nfragment BookList_books on Query {\n  books {\n    id\n    ...BookCard_book\n  }\n}\n"
   }
 };
 (node as any).hash = '61b30ea468f7b72aea919f212275858b';

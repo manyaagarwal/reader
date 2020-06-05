@@ -14,7 +14,7 @@ function deleteBook(id: String) {
   DeleteBookMutation(id, () => console.log("Book Deleted"));
 }
 
-const BookCard: React.FC<Props> = ({ key, book }) => {
+const BookCard: React.FC<Props> = ({ key, book, navigation,status }) => {
   return (
     <Card key={key} accessibilityStates={[]} style={styles.card}>
       <Card.Title title={book.name} accessibilityStates={[]} />
@@ -26,10 +26,21 @@ const BookCard: React.FC<Props> = ({ key, book }) => {
       <Card.Actions>
         <Button
           icon="delete"
+          raised
           theme={{ roundness: 5 }}
           onPress={() => deleteBook(book.id)}
         >
           Delete
+        </Button>
+        <Button
+          icon="pencil-outline"
+          raised
+          theme={{ roundness: 5 }}
+          onPress={() =>
+            navigation.navigate("AddBookForm", { id: book.id, book: book })
+          }
+        >
+          Edit
         </Button>
       </Card.Actions>
     </Card>
@@ -43,6 +54,7 @@ export default createFragmentContainer(BookCard, {
       name
       currentPageNum
       numPages
+      status
     }
   `,
 });

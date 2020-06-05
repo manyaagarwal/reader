@@ -4,6 +4,7 @@ import AddBookForm from "../components/AddBookForm";
 import { Home } from "./Home";
 import { AddBook } from "../components/AddBook";
 import ReadingTimer from "./ReadingTimer";
+import BookCard from "../components/BookCard";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -19,12 +20,14 @@ export function NavigatorModal() {
       <RootStack.Screen
         name="Home"
         component={Home}
-        options={{ headerTitle: AddBook }}
+        options={({ navigation, route }) => ({
+          headerTitle: (props) => <AddBook navigation={navigation} />,
+        })}
       />
       <RootStack.Screen
         name="AddBookForm"
         component={AddBookForm}
-        options={{ title: "Add Book" }}
+        options={{ title: "Add/Update Book" }}
       />
       <RootStack.Screen
         name="ReadingTimer"

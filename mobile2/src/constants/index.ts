@@ -25,6 +25,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 30,
   },
+  centrePage: {
+    flex: 1,
+    justifyContent: "center",
+  },
   radiobtn: {
     flexDirection: "row",
     justifyContent: "flex-start",

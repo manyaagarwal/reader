@@ -15,7 +15,7 @@ type Props = {
 export const Home: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
-      <BookListPage status="READING" />
+      <BookListPage status="READING" navigation={navigation} />
       <FAB
         style={styles.fab}
         label="Start Reading"

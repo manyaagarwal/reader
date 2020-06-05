@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-community/art": "^1.2.0",
     "@react-native-community/datetimepicker": "^2.4.0",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-navigation/bottom-tabs": "^5.5.1",
@@ -25,6 +26,7 @@
     "react-native-elements": "^2.0.1",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-paper": "^3.10.1",
+    "react-native-progress": "^4.1.2",
     "react-native-reanimated": "^1.7.1",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-safe-area-view": "^1.1.1",
