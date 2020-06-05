@@ -4,7 +4,6 @@ import AddBookForm from "../components/AddBookForm";
 import { Home } from "./Home";
 import { AddBook } from "../components/AddBook";
 import ReadingTimer from "./ReadingTimer";
-import BookCard from "../components/BookCard";
 
 export type RootStackParamList = {
   Home: undefined;
