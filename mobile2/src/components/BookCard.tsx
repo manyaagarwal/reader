@@ -14,7 +14,7 @@ function deleteBook(id: String) {
   DeleteBookMutation(id, () => console.log("Book Deleted"));
 }
 
-const BookCard: React.FC<Props> = ({ key, book, navigation,status }) => {
+const BookCard: React.FC<Props> = ({ key, book, navigation }) => {
   return (
     <Card key={key} accessibilityStates={[]} style={styles.card}>
       <Card.Title title={book.name} accessibilityStates={[]} />

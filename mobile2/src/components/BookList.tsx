@@ -12,10 +12,19 @@ type Props = {
 const BookList: React.FC<Props> = ({ books, navigation, status }) => {
   return (
     <ScrollView>
-      {books.books?.map(
-        (book) =>
-          book && <BookCard key={book.id} book={book} navigation={navigation} status={status}/>
-      ) ?? null}
+      {books.books
+        ?.filter((book) => book.status == status)
+        .map(
+          (book) =>
+            book && (
+              <BookCard
+                key={book.id}
+                book={book}
+                navigation={navigation}
+                status={status}
+              />
+            )
+        ) ?? null}
     </ScrollView>
   );
 };
@@ -25,6 +34,7 @@ export default createFragmentContainer(BookList, {
     fragment BookList_books on Query {
       books {
         id
+        status
         ...BookCard_book
       }
     }

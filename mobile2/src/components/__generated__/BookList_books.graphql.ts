@@ -3,9 +3,11 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
+export type BookStatus = "COMPLETED" | "READING" | "YET_TO_READ" | "%future added value";
 export type BookList_books = {
     readonly books: ReadonlyArray<{
         readonly id: string;
+        readonly status: BookStatus | null;
         readonly " $fragmentRefs": FragmentRefs<"BookCard_book">;
     } | null> | null;
     readonly " $refType": "BookList_books";
@@ -40,6 +42,13 @@ const node: ReaderFragment = {
           "storageKey": null
         },
         {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "status",
+          "storageKey": null
+        },
+        {
           "args": null,
           "kind": "FragmentSpread",
           "name": "BookCard_book"
@@ -50,5 +59,5 @@ const node: ReaderFragment = {
   ],
   "type": "Query"
 };
-(node as any).hash = 'f0b5b317b7e09dc1baeddbe5f68352cf';
+(node as any).hash = '550d37ca43e021907e25f55428afb931';
 export default node;
