@@ -12,19 +12,17 @@ type Props = {
 const BookList: React.FC<Props> = ({ books, navigation, status }) => {
   return (
     <ScrollView>
-      {books.books
-        ?.filter((book) => book.status == status)
-        .map(
-          (book) =>
-            book && (
-              <BookCard
-                key={book.id}
-                book={book}
-                navigation={navigation}
-                status={status}
-              />
-            )
-        ) ?? null}
+      {books.books?.filter(book => !!book && book.status == status).map(
+        (book) =>
+          book && (
+            <BookCard
+              key={book.id}
+              book={book}
+              navigation={navigation}
+              status={status}
+            />
+          )
+      ) ?? null}
     </ScrollView>
   );
 };

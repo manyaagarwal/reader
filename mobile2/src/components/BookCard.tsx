@@ -15,6 +15,7 @@ function deleteBook(id: String) {
 }
 
 const BookCard: React.FC<Props> = ({ key, book, navigation }) => {
+
   return (
     <Card key={key} accessibilityStates={[]} style={styles.card}>
       <Card.Title title={book.name} accessibilityStates={[]} />
