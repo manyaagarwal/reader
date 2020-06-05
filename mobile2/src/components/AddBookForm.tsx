@@ -10,6 +10,8 @@ import {
 import { View } from "react-native";
 import { styles } from "../constants";
 
+import commit from "../mutations/AddBookMutation";
+
 export default class AddBookForm extends Component<{}> {
   state = {
     bookName: "",
@@ -18,10 +20,21 @@ export default class AddBookForm extends Component<{}> {
     status: "",
   };
 
-  addBook = () => {
-    console.log("added");
-  };
   render() {
+    const addData = () => {
+      this.setState({
+        bookName: "",
+        total: "",
+        read: "",
+        status: "",
+      });
+      commit(
+        this.state.bookName,
+        Number(this.state.total),
+        Number(this.state.read),
+        this.state.status
+      );
+    };
     return (
       <View style={styles.MainContainer}>
         <TextInput
@@ -45,8 +58,8 @@ export default class AddBookForm extends Component<{}> {
             <Text>Currently Reading</Text>
           </View>
           <View style={styles.radiobtn}>
-            <RadioButton value="FINISHED" />
-            <Text>Currently Reading</Text>
+            <RadioButton value="COMPLETED" />
+            <Text>Finished</Text>
           </View>
         </RadioButton.Group>
         <TextInput
@@ -63,12 +76,7 @@ export default class AddBookForm extends Component<{}> {
           onChangeText={(text) => this.setState({ read: text })}
           accessibilityStates={[]}
         />
-        <Button
-          style={{ marginTop: 20 }}
-          mode="contained"
-          onPress={() => this.addBook()}
-          accessibilityStates={[]}
-        >
+        <Button mode="contained" onPress={addData} accessibilityStates={[]}>
           Add Book
         </Button>
       </View>
