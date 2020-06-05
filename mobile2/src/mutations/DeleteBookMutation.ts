@@ -1,12 +1,12 @@
 import { commitMutation, graphql } from "react-relay";
 import environment from "../Environment";
 
-
 const mutation = graphql`
-    mutation DeleteBookMutation($id: ID!){
-        deleteBook(id: $id){ 
-        }  
+  mutation DeleteBookMutation($id: ID!) {
+    deleteBook(id: $id) {
+      id
     }
+  }
 `;
 
 export default (id, callback) => {

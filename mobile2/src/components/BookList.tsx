@@ -22,7 +22,7 @@ const BookList: React.FC<Props> = ({ books }) => {
 export default createFragmentContainer(BookList, {
   books: graphql`
     fragment BookList_books on Query {
-      books{
+      books {
         id
         ...BookCard_book
       }

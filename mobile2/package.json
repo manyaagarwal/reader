@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "format": "prettier --write src/*.{ts,tsx} src/**/*.{ts,tsx}",
-    "relay": "relay-compiler --language typescript --src ./src --schema ./schema.graphql --extensions tsx",
+    "relay": "relay-compiler --language typescript --src ./src --schema ./schema.graphql --extensions ts tsx",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
