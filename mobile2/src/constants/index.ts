@@ -25,4 +25,9 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 30,
   },
+  radiobtn: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
 });
