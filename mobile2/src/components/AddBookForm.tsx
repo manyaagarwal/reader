@@ -10,7 +10,7 @@ export default class AddBookForm extends Component<{}> {
   state = {
     bookName: "",
     total: "",
-    read: ""
+    read: "",
   };
 
   render() {
@@ -30,8 +30,8 @@ export default class AddBookForm extends Component<{}> {
         input: {
           name,
           numPages,
-          currentPageNum
-        }
+          currentPageNum,
+        },
       };
       return new Promise((resolve, reject) => {
         commitMutation(env, {
@@ -42,12 +42,12 @@ export default class AddBookForm extends Component<{}> {
             this.setState({
               bookName: "",
               total: "",
-              read: ""
+              read: "",
             });
             console.log(response);
             resolve(response); // here you can resolve the User connection updated by the mutation and update your render
           },
-          onError: err => console.log("An unexpected error occurred", err) // showing an alert to show that something happened in the backend
+          onError: (err) => console.log("An unexpected error occurred", err), // showing an alert to show that something happened in the backend
         });
       });
     };
@@ -64,19 +64,19 @@ export default class AddBookForm extends Component<{}> {
         <TextInput
           label="Book Name"
           value={this.state.bookName}
-          onChangeText={text => this.setState({ bookName: text })}
+          onChangeText={(text) => this.setState({ bookName: text })}
           accessibilityStates={[]}
         />
         <TextInput
           label="Total Number Of Pages"
           value={this.state.total}
-          onChangeText={text => this.setState({ total: text })}
+          onChangeText={(text) => this.setState({ total: text })}
           accessibilityStates={[]}
         />
         <TextInput
           label="Number Of Pages Read"
           value={this.state.read}
-          onChangeText={text => this.setState({ read: text })}
+          onChangeText={(text) => this.setState({ read: text })}
           accessibilityStates={[]}
         />
         <Button mode="contained" onPress={addData} accessibilityStates={[]}>
