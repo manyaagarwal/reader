@@ -29,7 +29,7 @@ const BookCard: React.FC<Props> = ({ key, book }) => {
           theme={{ roundness: 5 }}
           onPress={() => deleteBook(book.id)}
         >
-            Delete
+          Delete
         </Button>
       </Card.Actions>
     </Card>
