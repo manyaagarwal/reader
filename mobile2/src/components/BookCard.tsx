@@ -25,7 +25,7 @@ const BookCard: React.FC<Props> = ({ key, book, navigation }) => {
       </Card.Content>
       <Card.Actions>
         <Button
-          icon="delete"
+          icon="delete-outline"
           raised
           theme={{ roundness: 5 }}
           onPress={() => deleteBook(book.id)}
