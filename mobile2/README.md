@@ -1,7 +1,7 @@
 # Reader Mobile App
 
 The Reader mobile app. Written in TypeScript with React Native and Relay, and
-minimal Jest tests.
+minimal Jest tests. Other open source projects used are React Native Navigation and React Native Paper. 
 
 ## Usage
 
