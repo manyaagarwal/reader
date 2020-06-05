@@ -4,7 +4,9 @@ import environment from "../Environment";
 import { Paragraph, ProgressBar, Colors } from "react-native-paper";
 import BookList from "./BookList";
 import { BookListPageQuery } from "./__generated__/BookListPageQuery.graphql";
-import { appTheme } from "../constants";
+import {appTheme, styles} from "../constants";
+import * as Progress from "react-native-progress";
+import {View} from "react-native";
 
 interface Props {
   status: string;
@@ -29,11 +31,13 @@ export const BookListPage: React.FC<Props> = ({ status, navigation }) => {
           );
         }
         return (
-          <ProgressBar
-            progress={0.5}
-            color={appTheme.colors.accent}
-            accessibilityStates={[]}
+            <View style={styles.centrePage}>
+          <Progress.Circle
+            size={30}
+            indeterminate={true}
+            color={appTheme.colors.primary}
           />
+            </View>
         );
       }}
     />

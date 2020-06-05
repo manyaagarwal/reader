@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as Progress from "react-native-progress";
 
 import {
   TextInput,
@@ -8,7 +9,7 @@ import {
   Paragraph,
 } from "react-native-paper";
 import { View } from "react-native";
-import { styles } from "../constants";
+import { appTheme, styles } from "../constants";
 
 import commit from "../mutations/AddBookMutation";
 import DeleteBookMutation from "../mutations/DeleteBookMutation";
@@ -52,6 +53,13 @@ export default class AddBookForm extends Component<Props> {
           Number(read),
           status,
           () => this.props.navigation.goBack()
+        );
+        return (
+          <Progress.Circle
+            size={30}
+            indeterminate={true}
+            color={appTheme.colors.accent}
+          />
         );
       } else {
         commit(

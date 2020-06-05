@@ -54,6 +54,7 @@ export default createFragmentContainer(BookCard, {
       name
       currentPageNum
       numPages
+      status
     }
   `,
 });
