@@ -7,17 +7,20 @@ const mutation = graphql`
       name
       numPages
       currentPageNum
+      status
     }
   }
 `;
 
-const commit = (name, numPages, currentPageNum) => {
+const commit = (name, numPages, currentPageNum, status) => {
+  console.log(numPages);
   //Parameters of our mutation
   const variables = {
     input: {
       name,
       numPages,
       currentPageNum,
+      status,
     },
   };
   return new Promise((resolve, reject) => {
