@@ -1,10 +1,13 @@
 import React, { useState, useCallback } from "react";
 import { View, Platform } from "react-native";
-import { Button, Paragraph } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 import { styles } from "../constants";
 import { StackNavigationProp } from "@react-navigation/stack";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { differenceInSeconds, formatDuration } from "date-fns";
 import { RootStackParamList } from "./NavigatorModal";
+import { useInterval } from "../util/useInterval";
+import { intervalToDuration } from "date-fns/esm";
 
 type ChoosingViewProps = {
   onStartSelected: (chosenDate: Date) => void;
@@ -36,7 +39,7 @@ const ChoosingView: React.FC<ChoosingViewProps> = ({ onStartSelected }) => {
   return (
     <>
       <Button mode="contained" onPress={startReading} accessibilityStates={[]}>
-        {`Start reading until ${endDate.toLocaleString()}`}
+        Start reading until {endDate.toLocaleString()}
       </Button>
 
       <Button onPress={showPicker} accessibilityStates={[]}>
@@ -63,17 +66,30 @@ type ReadingViewProps = {
 };
 
 const ReadingView: React.FC<ReadingViewProps> = ({ endDate, onReadEnd }) => {
-  // TODO: Compute time remaining
-  // TODO: Display a countdown
-  // TODO: Automatically end when time is up
+  const [interval, setInterval] = useState<Interval>({
+    start: new Date(),
+    end: endDate,
+  });
+
+  useInterval(() => {
+    if (differenceInSeconds(endDate, new Date()) <= 0) {
+      return onReadEnd();
+    }
+    setInterval({ start: new Date(), end: endDate });
+  }, 1000);
 
   const handleStopReading = useCallback(() => {
-    // TODO: Stop timer
     onReadEnd();
   }, [onReadEnd]);
 
   return (
     <>
+      <Text accessibilityStates={[]}>
+        {formatDuration(intervalToDuration(interval), {
+          format: ["hours", "minutes", "seconds"],
+        })}{" "}
+        to go. Enjoy your book!
+      </Text>
       <Button
         mode="outlined"
         onPress={handleStopReading}
