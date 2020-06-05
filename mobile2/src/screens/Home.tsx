@@ -19,7 +19,7 @@ export const Home: React.FC<Props> = ({ navigation }) => {
       <FAB
         style={styles.fab}
         label="Start Reading"
-        onPress={() => navigation.navigate("ReadingTimer")}
+        onPress={() => navigation.navigate("AddBookForm")}
       />
     </View>
   );
