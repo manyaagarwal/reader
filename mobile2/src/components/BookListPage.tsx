@@ -14,7 +14,7 @@ export const BookListPage: React.FC<props> = ({ status }) => {
     <QueryRenderer<BookListPageQuery>
       environment={environment}
       query={graphql`
-        query BookListPageQuery($status: String!) {
+        query BookListPageQuery{
           ...BookList_books
         }
       `}

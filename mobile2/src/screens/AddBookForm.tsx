@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
-import {TextInput, Button, RadioButton, Text, Paragraph} from "react-native-paper";
+import {
+  TextInput,
+  Button,
+  RadioButton,
+  Text,
+  Paragraph,
+} from "react-native-paper";
 import { View } from "react-native";
 import { styles } from "../constants";
 
@@ -12,6 +18,9 @@ export default class AddBookForm extends Component<{}> {
     status: "",
   };
 
+  addBook = () => {
+    console.log("added");
+  };
   render() {
     return (
       <View style={styles.MainContainer}>
@@ -57,7 +66,7 @@ export default class AddBookForm extends Component<{}> {
         <Button
           style={{ marginTop: 20 }}
           mode="contained"
-          onPress={() => console.log("Pressed")}
+          onPress={() => this.addBook()}
           accessibilityStates={[]}
         >
           Add Book
