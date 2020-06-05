@@ -11,8 +11,15 @@ import { View } from "react-native";
 import { styles } from "../constants";
 
 import commit from "../mutations/AddBookMutation";
+import DeleteBookMutation from "../mutations/DeleteBookMutation";
+import UpdateBookMutation from "../mutations/UpdateBookMutation";
 
-export default class AddBookForm extends Component<{}> {
+interface Props {
+  route: any; //change type
+  navigation: any;
+}
+
+export default class AddBookForm extends Component<Props> {
   state = {
     bookName: "",
     total: "",
@@ -20,20 +27,46 @@ export default class AddBookForm extends Component<{}> {
     status: "",
   };
 
+  componentDidMount(): void {
+    const { id, book } = this.props.route.params;
+    console.log(book);
+    if (id) {
+      this.setState({
+        bookName: book.name,
+        total: book.numPages.toString(),
+        read: book.currentPageNum.toString(),
+        status: book.status,
+      });
+    }
+  }
+
   render() {
     const addData = () => {
+      const { id } = this.props.route.params;
+      const { status, total, read, bookName } = this.state;
+      if (id) {
+        UpdateBookMutation(
+          id,
+          bookName,
+          Number(total),
+          Number(read),
+          status,
+          () => this.props.navigation.goBack()
+        );
+      } else {
+        commit(
+          this.state.bookName,
+          Number(this.state.total),
+          Number(this.state.read),
+          this.state.status
+        );
+      }
       this.setState({
         bookName: "",
         total: "",
         read: "",
         status: "",
       });
-      commit(
-        this.state.bookName,
-        Number(this.state.total),
-        Number(this.state.read),
-        this.state.status
-      );
     };
     return (
       <View style={styles.MainContainer}>

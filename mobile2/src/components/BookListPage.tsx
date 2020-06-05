@@ -10,7 +10,7 @@ interface Props {
   status: string;
 }
 
-export const BookListPage: React.FC<Props> = ({ status }) => {
+export const BookListPage: React.FC<Props> = ({ status, navigation }) => {
   return (
     <QueryRenderer<BookListPageQuery>
       environment={environment}
@@ -24,7 +24,9 @@ export const BookListPage: React.FC<Props> = ({ status }) => {
         if (error) {
           return <Paragraph>{error.message}</Paragraph>;
         } else if (props) {
-          return <BookList books={props} status={status} />;
+          return (
+            <BookList books={props} status={status} navigation={navigation} />
+          );
         }
         return (
           <ProgressBar
