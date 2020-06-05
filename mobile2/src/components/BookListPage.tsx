@@ -4,8 +4,13 @@ import environment from "../Environment";
 import { Paragraph, ProgressBar, Colors } from "react-native-paper";
 import BookList from "./BookList";
 import { BookListPageQuery } from "./__generated__/BookListPageQuery.graphql";
+import { appTheme } from "../constants";
 
-export const BookListPage: React.FC = () => {
+interface Props {
+  status: string;
+}
+
+export const BookListPage: React.FC<Props> = ({ status }) => {
   return (
     <QueryRenderer<BookListPageQuery>
       environment={environment}
@@ -14,17 +19,17 @@ export const BookListPage: React.FC = () => {
           ...BookList_books
         }
       `}
-      variables={{}}
+      variables={{ status: status }}
       render={({ error, props }) => {
         if (error) {
           return <Paragraph>{error.message}</Paragraph>;
         } else if (props) {
-          return <BookList books={props} />;
+          return <BookList books={props} status={status} />;
         }
         return (
           <ProgressBar
             progress={0.5}
-            color={Colors.red800}
+            color={appTheme.colors.accent}
             accessibilityStates={[]}
           />
         );

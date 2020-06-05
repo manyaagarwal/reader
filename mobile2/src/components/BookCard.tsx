@@ -1,22 +1,37 @@
 import * as React from "react";
-import { Card, Paragraph } from "react-native-paper";
+import { Button, Card, Paragraph } from "react-native-paper";
 import { createFragmentContainer, graphql } from "react-relay";
 import { BookCard_book } from "./__generated__/BookCard_book.graphql";
+import DeleteBookMutation from "../mutations/DeleteBookMutation";
+import { styles } from "../constants";
 
 interface Props {
   key: string;
   book: BookCard_book;
 }
 
+function deleteBook(id: String) {
+  DeleteBookMutation(id, () => console.log("Book Deleted"));
+}
+
 const BookCard: React.FC<Props> = ({ key, book }) => {
   return (
-    <Card key={key} accessibilityStates={[]}>
+    <Card key={key} accessibilityStates={[]} style={styles.card}>
       <Card.Title title={book.name} accessibilityStates={[]} />
       <Card.Content>
         <Paragraph>
           {book.currentPageNum} / {book.numPages}
         </Paragraph>
       </Card.Content>
+      <Card.Actions>
+        <Button
+          icon="delete"
+          theme={{ roundness: 5 }}
+          onPress={() => deleteBook(book.id)}
+        >
+          Delete
+        </Button>
+      </Card.Actions>
     </Card>
   );
 };
