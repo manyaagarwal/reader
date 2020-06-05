@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { graphql, commitMutation } from "react-relay";
-import env from "../Environment";
+
 import { TextInput, Button } from "react-native-paper";
 import { View } from "react-native";
 import { styles } from "../constants";
-import { buildSchema } from "graphql";
+import commit from "../mutations/AddBookMutation";
 
 export default class AddBookForm extends Component<{}> {
   state = {
@@ -14,50 +13,13 @@ export default class AddBookForm extends Component<{}> {
   };
 
   render() {
-    const mutation = graphql`
-      mutation AddBookFormMutation($input: CreateBookInput!) {
-        createBook(input: $input) {
-          name
-          numPages
-          currentPageNum
-        }
-      }
-    `;
-
-    const commit = (name, numPages, currentPageNum) => {
-      //Parameters of our mutation
-      const variables = {
-        input: {
-          name,
-          numPages,
-          currentPageNum,
-        },
-      };
-      return new Promise((resolve, reject) => {
-        commitMutation(env, {
-          //Passing our enviroment
-          mutation, //Here we pass our GraphQL mutation
-          variables, //Passing our parameters
-          onCompleted: (response, errors) => {
-            this.setState({
-              bookName: "",
-              total: "",
-              read: "",
-            });
-            console.log(response);
-            resolve(response); // here you can resolve the User connection updated by the mutation and update your render
-          },
-          onError: (err) => console.log("An unexpected error occurred", err), // showing an alert to show that something happened in the backend
-        });
-      });
-    };
     const addData = () => {
-      console.log("Pressed");
-      commit(
-        this.state.bookName,
-        Number(this.state.total),
-        Number(this.state.read)
-      );
+      this.setState({
+        bookName: "",
+        total: "",
+        read: "",
+      });
+      commit(this.state.bookName, this.state.total, this.state.read);
     };
     return (
       <View style={styles.MainContainer}>

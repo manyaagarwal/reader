@@ -11,25 +11,25 @@ export type CreateBookInput = {
     numSecondsRead?: number | null;
     status?: BookStatus | null;
 };
-export type AddBookFormMutationVariables = {
+export type AddBookMutationVariables = {
     input: CreateBookInput;
 };
-export type AddBookFormMutationResponse = {
+export type AddBookMutationResponse = {
     readonly createBook: {
         readonly name: string | null;
         readonly numPages: number | null;
         readonly currentPageNum: number | null;
     } | null;
 };
-export type AddBookFormMutation = {
-    readonly response: AddBookFormMutationResponse;
-    readonly variables: AddBookFormMutationVariables;
+export type AddBookMutation = {
+    readonly response: AddBookMutationResponse;
+    readonly variables: AddBookMutationVariables;
 };
 
 
 
 /*
-mutation AddBookFormMutation(
+mutation AddBookMutation(
   $input: CreateBookInput!
 ) {
   createBook(input: $input) {
@@ -83,7 +83,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "AddBookFormMutation",
+    "name": "AddBookMutation",
     "selections": [
       {
         "alias": null,
@@ -106,7 +106,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "AddBookFormMutation",
+    "name": "AddBookMutation",
     "selections": [
       {
         "alias": null,
@@ -134,11 +134,11 @@ return {
   "params": {
     "id": null,
     "metadata": {},
-    "name": "AddBookFormMutation",
+    "name": "AddBookMutation",
     "operationKind": "mutation",
-    "text": "mutation AddBookFormMutation(\n  $input: CreateBookInput!\n) {\n  createBook(input: $input) {\n    name\n    numPages\n    currentPageNum\n    id\n  }\n}\n"
+    "text": "mutation AddBookMutation(\n  $input: CreateBookInput!\n) {\n  createBook(input: $input) {\n    name\n    numPages\n    currentPageNum\n    id\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '24ad0d686558a16aafecfbce36b9c0f0';
+(node as any).hash = 'e3623f9e8e751acd169e9afe49d4a179';
 export default node;
