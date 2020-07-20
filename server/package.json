@@ -14,7 +14,7 @@
     "graphql": "^15.0.0",
     "graphql-cli": "^3.0.14",
     "graphql-relay": "^0.6.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0"
   },
